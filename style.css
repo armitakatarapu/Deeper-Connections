@@ -54,23 +54,25 @@ footer {
     width: 100%;
     bottom: 0;
 }
-
-.navbar{
-    background-color: rgb(188, 37, 62);
-
+.navigationbar{
+    background-color: pink;
+    width: 100%;
 }
 
+
 .navigationbar ul{
-    background-color: rgb(188, 37, 62);
     list-style-type: none;
     padding: 0px;
     margin: 0px;
+    display: flex;
+    justify-content: center;
 }
 
 .navigationbar a{
     color: black;
+    font-family: 'Monaco', 'Courier New', monospace;
     text-decoration: none;
-    padding: 15px;
+    padding: 10px;
     display: block;
     text-align: center;
 }
