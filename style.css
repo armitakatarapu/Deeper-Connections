@@ -2,11 +2,19 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(239, 217, 213);
+    background-color: #ffe8db;
+    background-image: url('https://media.istockphoto.com/id/1130070387/vector/pink-color-vector-background.jpg?s=612x612&w=0&k=20&c=XkXlxa5sFrl50X4n8IjQ6dZMk0-u0t15ICQpOkYGzow=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+main {
+    padding: 20px;
+    min-height: 200vh; 
 }
 
 header {
-    background-color: #000000;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -22,14 +30,14 @@ header nav {
 
 header nav a {
     text-decoration: none;
-    color: white;
+    color: rgb(55, 45, 45);
     font-weight: bold;
 }
 
 
 header h1 {
     margin: 0;
-    color: white;
+    color: rgb(55, 45, 45);
 }
 
 main {
@@ -68,8 +76,8 @@ button:hover {
 footer {
     text-align: center;
     padding: 10px;
-    background: #333;
-    color: white;
+    
+    color: rgb(55, 45, 45);
     position: fixed;
     width: 100%;
     bottom: 0;
