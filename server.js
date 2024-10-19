@@ -2,11 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
+<<<<<<< Updated upstream
 const path = require('path');
+=======
+const path = require('path'); // Add this line to require the path module
+>>>>>>> Stashed changes
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 mongoose.connect('mongodb+srv://agampa:Deeper-Connections-Cal-Hacks@cluster0.ky94y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   /*useNewUrlParser: true,
@@ -22,8 +25,13 @@ const User = mongoose.model('User', userSchema);
 
 // Route for handling user signup
 app.get('/', (req, res) => {
+<<<<<<< Updated upstream
     res.sendFile(path.join(_dirname, 'signIn.html'));
   });
+=======
+    res.sendFile(path.join(__dirname, 'signIn.html')); // Make sure to use __dirname to give the full path
+});
+>>>>>>> Stashed changes
 
 app.post('/signup', async (req, res) => {
   const { email, password } = req.body;
