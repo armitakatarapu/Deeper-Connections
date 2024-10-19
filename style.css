@@ -55,25 +55,30 @@ footer {
     bottom: 0;
 }
 
-navigationbar ul{
-    background-color: pink;
+.navbar{
+    background-color: rgb(188, 37, 62);
+
+}
+
+.navigationbar ul{
+    background-color: rgb(188, 37, 62);
     list-style-type: none;
     padding: 0px;
     margin: 0px;
 }
 
-navigationbar a{
-    color: white;
+.navigationbar a{
+    color: black;
     text-decoration: none;
     padding: 15px;
     display: block;
     text-align: center;
 }
 
-navigationbar a:hover{
+.navigationbar a:hover{
     background-color: gray;
 }
 
-navigationbar li{
+.navigationbar li{
     float: left
 }
