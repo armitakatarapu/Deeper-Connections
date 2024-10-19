@@ -1,12 +1,17 @@
 import { Hume, HumeClient } from 'hume';
 // instantiate the Hume client and authenticate
+const vari1 = "2ZzhuZXY0YyKXb7cq3wqzPXABK5UWmvznRGLNk9vwecW6XqK";
+const vari2 = "RK1DGWHlzjUlWHFFqZsVcZJma7qtSZkAWeeaYrt4fkV2GXu2wKYsUUnBBT5fDAkE";
+
 const client = new HumeClient({
-  apiKey: import.meta.env."2ZzhuZXY0YyKXb7cq3wqzPXABK5UWmvznRGLNk9vwecW6XqK" || '',
-  secretKey: import.meta.env."RK1DGWHlzjUlWHFFqZsVcZJma7qtSZkAWeeaYrt4fkV2GXu2wKYsUUnBBT5fDAkE" || '',
+  apiKey: import.meta.env.vari1  // Replace with your actual environment variable name
+  ,secretKey: vari2  // You can reference the variable defined earlier
 });
+
 // instantiates WebSocket and establishes an authenticated connection
+const vari3 = "6e37bc8c-07c7-4afe-85a5-bf71352c1f68";
 const socket = await client.empathicVoice.chat.connect({
-  configId: import.meta.env."6e37bc8c-07c7-4afe-85a5-bf71352c1f68" || null,
+  configId: import.meta.env.vari3 || null
 });
 // define handler functions and assign them to the corresponding WebSocket event handlers
 socket.on('open', handleWebSocketOpenEvent);
