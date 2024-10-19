@@ -33,6 +33,7 @@ header nav a {
     text-decoration: none;
     color: rgb(55, 45, 45);
     font-weight: bold;
+    font-size: large;
 }
 .nav a:hover{
     background-color: gray;
