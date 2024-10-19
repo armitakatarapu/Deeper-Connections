@@ -10,7 +10,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 30px;
     padding-left: 2rem;
     
 }
@@ -107,4 +107,25 @@ footer {
 
 .h1 {
 
+}
+.intro {
+    text-align: center;
+    padding: 40px;
+    background-color: #b2ebf2; 
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.features, .why-use {
+    background-color: #ffffff; /* White background for sections */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+h2 {
+    color: #004d40; /* Darker teal for section headings */
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
 }
