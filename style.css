@@ -2,8 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffe8db;
-    background-image: url('https://media.istockphoto.com/id/1130070387/vector/pink-color-vector-background.jpg?s=612x612&w=0&k=20&c=XkXlxa5sFrl50X4n8IjQ6dZMk0-u0t15ICQpOkYGzow=');
+    background-color: #FAEEDC;
+    /*background-image: url('https://media.istockphoto.com/id/1130070387/vector/pink-color-vector-background.jpg?s=612x612&w=0&k=20&c=XkXlxa5sFrl50X4n8IjQ6dZMk0-u0t15ICQpOkYGzow=');
+    */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,6 +33,9 @@ header nav a {
     text-decoration: none;
     color: rgb(55, 45, 45);
     font-weight: bold;
+}
+.nav a:hover{
+    background-color: gray;
 }
 
 
@@ -113,12 +117,9 @@ footer {
     margin: 0 15px; 
 }
 
-.h1 {
-
-}
 .intro {
     text-align: center;
-    padding: 40px;
+    padding: 20px;
     background-color: #b2ebf2; 
     border-radius: 10px;
     margin-bottom: 20px;
@@ -136,4 +137,14 @@ h2 {
 .features ul {
     list-style-type: none;
     padding: 0;
+}
+.img {
+    display: block;
+    margin: auto;
+}
+
+.center-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
