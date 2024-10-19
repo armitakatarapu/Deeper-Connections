@@ -160,7 +160,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
     
     background-color: white;
     padding: 20px;
@@ -201,13 +201,14 @@ h2 {
 
 .services-container,
 .team-container {
-    width: 100%; 
-    max-width: 1200px; 
+    width: 95%; 
     background-color: white;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-top: 20px; 
+    margin: auto;
+    margin: 40px auto;
 }
 .team-members {
     display: flex;
@@ -219,7 +220,7 @@ h2 {
     width: 45%; 
     text-align: center; 
     margin-bottom: 20px; 
-
+}
 .team-member img {
     width: 100%;
     height: auto;
