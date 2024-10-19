@@ -54,3 +54,26 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+navigationbar ul{
+    background-color: pink;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+navigationbar a{
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+
+navigationbar a:hover{
+    background-color: gray;
+}
+
+navigationbar li{
+    float: left
+}
