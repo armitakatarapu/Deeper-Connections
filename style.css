@@ -59,7 +59,7 @@ textarea {
 }
 
 button {
-    background: #007bff;
+    background: #8abef6;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -121,7 +121,7 @@ footer {
 .intro {
     text-align: center;
     padding: 20px;
-    background-color: #b2ebf2; 
+    background-color: #c4f3f9; 
     border-radius: 10px;
     margin-bottom: 20px;
 }
