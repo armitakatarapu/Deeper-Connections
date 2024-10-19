@@ -225,5 +225,7 @@ h2 {
     width: 100%;
     height: auto;
     border-radius: 50%;
-    max-width: 150px;
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: cover;
 }
