@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +22,7 @@ const User = mongoose.model('User', userSchema);
 
 // Route for handling user signup
 app.get('/', (req, res) => {
-    res.sendFile(path.join('signIn.html'));
+    res.sendFile(path.join(_dirname, 'signIn.html'));
   });
 
 app.post('/signup', async (req, res) => {
