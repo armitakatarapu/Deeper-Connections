@@ -2,16 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: rgb(239, 217, 213);
 }
 
 header {
-    background-color: black;
+    background-color: #000000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
     padding-left: 2rem;
+    
 }
 
 header nav {
@@ -74,8 +75,7 @@ footer {
     bottom: 0;
 }
 .navigationbar{
-    background-color: pink;
-    width: 100%;
+    text-align: right;
 }
 
 
@@ -84,11 +84,12 @@ footer {
     padding: 0px;
     margin: 0px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding-right: 30px;
 }
 
 .navigationbar a{
-    color: black;
+    color: white;
     font-family: 'Monaco', 'Courier New', monospace;
     text-decoration: none;
     padding: 10px;
@@ -101,5 +102,9 @@ footer {
 }
 
 .navigationbar li{
-    float: left
+    margin: 0 15px; 
+}
+
+.h1 {
+
 }
