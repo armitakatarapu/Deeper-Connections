@@ -19,9 +19,15 @@
     </header>
     
     <main>
-        <h2 id="welcomeMessage"></h2>
+        <div class="flex-container">
+        <div class="text-container">
+        <h2 id="welcomeMessage" style="color: rgb(54, 26, 13); font-size: 35px; font-weight: bold;"></h2>
+        <p id="connectionsMessage" style="color: rgb(130, 80, 72); font-size: 28px; font-weight: bold;">Here are your connections:</p>
         <div id="userInfo"></div> <!-- For displaying user information -->
         <ul id="connectionsList"></ul>
+        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/5095/5095023.png" alt="User Icon" class="user-icon">
+        </div>
     </main> 
 
     <footer>
@@ -62,7 +68,8 @@
             }
 
             // Display a welcome message
-            document.getElementById('welcomeMessage').textContent = `Hello, ${loggedInUser}! Here are your connections:`;
+            document.getElementById('welcomeMessage').textContent = `Hello, ${loggedInUser}!`;
+            document.getElementById('connectionsMessage').textContent = 'Here are your connections:';
             
             // Example: Retrieve user connections from localStorage
             const connections = JSON.parse(localStorage.getItem('connections')) || [];
@@ -75,6 +82,31 @@
             });
         }
     </script>
+    <style>
+        
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Align items to the start */
+            background-color: #dcf7fa; /* Background color */
+            border-radius: 15px; /* Adjust the radius for rounded corners */
+            padding: 20px; /* Optional: add padding for spacing */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+        }
+    
+        .text-container {
+            max-width: 70%; /* Adjust width as necessary */
+            font-size: larger;
+
+        }
+    
+        .user-icon {
+            width: 450px; /* Set a larger size for the image */
+            height: auto; /* Keep aspect ratio */
+            margin-left: 100px; /* Space between text and image */
+        }
+    </style>
+    
 
     
 </body>
