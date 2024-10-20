@@ -7,30 +7,30 @@ const app = express();
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }));
 
-
+// In-memory array to store users temporarily
 let users = [];
 
-
+// Route for handling user signup
 app.post('/signup', async (req, res) => {
   const { name, email, phone, username, password, emergencyContact1, emergencyContact2 } = req.body;
 
-  
+  // Check if password is provided
   if (!password) {
     return res.status(400).send('Password is required.');
   }
 
   try {
-    
+    // Check if the username or email already exists
     const userExists = users.find(user => user.email === email || user.username === username);
 
     if (userExists) {
       return res.status(400).send('Email or username already exists.');
     }
 
-    
+    // Hash the password before storing it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    
+    // Create a new user and add to the in-memory array
     const newUser = {
       name,
       email,
@@ -50,19 +50,19 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-
+// Route for handling user login
 app.post('/login', async (req, res) => {
-  const { usernameOrEmail, password } = req.body; 
+  const { usernameOrEmail, password } = req.body; // Change 'email' to 'usernameOrEmail'
 
   try {
-    
+    // Check if the user exists by username or email
     const user = users.find(user => user.email === usernameOrEmail || user.username === usernameOrEmail);
 
     if (!user) {
       return res.status(400).send('User not found.');
     }
 
-    
+    // Compare the provided password with the hashed password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -76,7 +76,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
+// Start the server
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
