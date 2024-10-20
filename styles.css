@@ -258,6 +258,7 @@ h2 {
   padding: 10px; 
   max-width: 80%; 
   margin-left: 200px; 
+  align-items: center;
 }
 .about-container {
   display: flex;
