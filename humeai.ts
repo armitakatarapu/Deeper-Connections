@@ -18,69 +18,44 @@ import './styles.css';
   startBtn?.addEventListener('click', connect);
   stopBtn?.addEventListener('click', disconnect);
 
-  /**
-   * the Hume Client, includes methods for connecting to EVI and managing the Web Socket connection
-   */
+  
   let client: HumeClient | null = null;
 
-  /**
-   * the WebSocket instance
-   */
+  
   let socket: Hume.empathicVoice.chat.ChatSocket | null = null;
 
-  /**
-   * flag which denotes the intended state of the WebSocket
-   */
+  
   let connected = false;
 
-  /**
-   * the recorder responsible for recording the audio stream to be prepared as the audio input
-   */
+  
   let recorder: MediaRecorder | null = null;
 
-  /**
-   * the stream of audio captured from the user's microphone
-   */
+  
   let audioStream: MediaStream | null = null;
 
-  /**
-   * the current audio element to be played
-   */
+  
   let currentAudio: HTMLAudioElement | null = null;
 
-  /**
-   * flag which denotes whether audio is currently playing or not
-   */
+  
   let isPlaying = false;
 
-  /**
-   * flag which denotes whether to utilize chat resumability (preserve context from one chat to the next)
-   */
+  
   let resumeChats = true;
 
-  /**
-   * The ChatGroup ID used to resume the chat if disconnected unexpectedly
-   */
+  
   let chatGroupId: string | undefined;
 
-  /**
-   * audio playback queue
-   */
+  
   const audioQueue: Blob[] = [];
 
-  /**
-   * mime type supported by the browser the application is running in
-   */
+  
   const mimeType: MimeType = (() => {
     const result = getBrowserSupportedMimeType();
     return result.success ? result.mimeType : MimeType.WEBM;
   })();
 
-  /**
-   * instantiates interface config and client, sets up Web Socket handlers, and establishes secure Web Socket connection
-   */
+  
   async function connect(): Promise<void> {
-    // instantiate the HumeClient with credentials to make authenticated requests
     if (!client) {
       client = new HumeClient({
         apiKey: import.meta.env.VITE_HUME_API_KEY || '',
@@ -88,7 +63,6 @@ import './styles.css';
       });
     }
 
-    // instantiates WebSocket and establishes an authenticated connection
     socket = await client.empathicVoice.chat.connect({
       configId: import.meta.env.VITE_HUME_CONFIG_ID || null,
       resumedChatGroupId: chatGroupId,
@@ -99,7 +73,6 @@ import './styles.css';
     socket.on('error', handleWebSocketErrorEvent);
     socket.on('close', handleWebSocketCloseEvent);
 
-    // update ui state
     toggleBtnStates();
   }
 
