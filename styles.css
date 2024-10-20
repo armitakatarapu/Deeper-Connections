@@ -349,3 +349,98 @@ h2 {
   text-decoration: none;
   cursor: pointer;
 }
+form {
+  display: flex;
+  flex-direction: column; 
+  max-width: 400px; 
+  margin: auto; 
+  padding: 20px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+}
+
+
+input {
+  margin-bottom: 15px; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+}
+.logout-container {
+  display: flex; 
+  justify-content: flex-end; 
+  margin-top: 20px;
+}
+.logout-button {
+  background-color: #281b5f; 
+    color: white; 
+    padding: 15px 30px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    float: center;
+    
+}
+
+.signup-button {
+  background-color: #281b5f; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    float: center;
+}
+
+/* General styling for the user info card */
+.user-info-card {
+  background-color: #ffffff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Inner spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px 0; /* Spacing above and below */
+}
+
+/* Header styles */
+.user-info-card h3 {
+  color: #281b5f; /* Darker shade for headings */
+  margin-bottom: 15px; /* Spacing below heading */
+}
+
+/* General text styling */
+.user-info {
+  color: #333; /* Dark text for readability */
+  font-weight: normal; /* Normal font weight for values */
+}
+
+/* Emergency contacts list */
+.emergency-contacts {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove padding */
+}
+
+.emergency-contacts li {
+  background-color: #f0f4f8; /* Light background for list items */
+  margin: 5px 0; /* Spacing between items */
+  padding: 10px; /* Inner spacing */
+  border-radius: 5px; /* Rounded corners for list items */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.emergency-contacts li:hover {
+  background-color: #d1e0e5; /* Change background on hover */
+}
+
+.welcome-text {
+  font-size: 2em; /* Adjust the size as needed */
+  font-weight: bold; /* Optional: make it bold */
+  color: #004d40; /* Change color as desired */
+  margin-bottom: 10px; /* Add some space below the text */
+}
+
+.connections-header {
+  font-size: 1.5em; /* Adjust the size as needed */
+  color: #333; /* Change color as desired */
+}
+
+

@@ -47,19 +47,24 @@
                 // Display user information
                 const userInfoDiv = document.getElementById('userInfo');
                 userInfoDiv.innerHTML = `
-                    <p><strong>Name:</strong> ${user.name}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Phone Number:</strong> ${user.phone}</p>
+                    <div class="user-info-card">
+                    <h3>User Information</h3>
+                    <p><strong>Name:</strong> <span class="user-info">${user.name}</span></p>
+                    <p><strong>Email:</strong> <span class="user-info">${user.email}</span></p>
+                    <p><strong>Phone Number:</strong> <span class="user-info">${user.phone}</span></p>
                     <h3>Emergency Contacts:</h3>
-                    <ul>
+                    <ul class="emergency-contacts">
                         <li>${user.emergencyContacts[0]}</li>
                         <li>${user.emergencyContacts[1]}</li>
                     </ul>
+                    </div>
                 `;
             }
 
             // Display a welcome message
-            document.getElementById('welcomeMessage').textContent = `Hello, ${loggedInUser}! Here are your connections:`;
+            document.getElementById('welcomeMessage').innerHTML = `<span class="welcome-text">Hello, ${loggedInUser}!</span> <p class="connections-header">Here are your connections:</p>`;
+
+
             
             // Example: Retrieve user connections from localStorage
             const connections = JSON.parse(localStorage.getItem('connections')) || [];
