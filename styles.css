@@ -449,5 +449,13 @@ input {
   font-size: 1.5em; /* Adjust the size as needed */
   color: #333; /* Change color as desired */
 }
+.user-image {
+  width: 100px; 
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Optional: make the image round */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add some shadow for depth */
+  margin-left: 20px; /* Add margin to separate from user info */
+  vertical-align: middle; /* Aligns the image with the text */
+}
 
 
