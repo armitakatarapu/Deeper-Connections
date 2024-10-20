@@ -4,7 +4,10 @@
   "description": "*An interactive therapy tool*",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
@@ -14,18 +17,7 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "hbs": "^4.2.0",
-    "mongoose": "^8.7.2"
-  }
-  "name": "hume-evi-typescript-sample-project",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
+    "mongoose": "^8.7.2",
     "hume": "^0.8.6"
   },
   "devDependencies": {
@@ -34,7 +26,6 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "private": true
 }
-
-
