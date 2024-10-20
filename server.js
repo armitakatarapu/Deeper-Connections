@@ -5,12 +5,15 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname));
+app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb+srv://agampa:Deeper-Connections-Cal-Hacks@cluster0.ky94y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-  /*useNewUrlParser: true,
-  useUnifiedTopology: true, */
-});
+mongoose.connect('mongodb+srv://akatarapu:9lTx4F85WKw5bnEU@cluster0.ggbel.mongodb.net/deep', {
+  // useNewUrlParser: true, // These options are deprecated in MongoDB Driver 4.x
+  // useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected!'))
+.catch(err => console.log(err));
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -21,28 +24,39 @@ const User = mongoose.model('User', userSchema);
 
 // Route for handling user signup
 app.get('/', (req, res) => {
-    res.sendFile(path.join(_dirname, 'signIn.html'));
-  });
+    res.sendFile(path.join(__dirname, 'signIn.html'));
+});
 
+// Ensure this function is async
 app.post('/signup', async (req, res) => {
-  const { email, password } = req.body;
+  console.log('Request body:', req.body); // Log the request body for debugging
+  const { email, password } = req.body; // Extract email and password from the request body
 
-  // Hash the password before storing it
-  const hashedPassword = await bcrypt.hash(password, 10);
+  // Check if password is defined
+  if (!password) {
+    return res.status(400).send('Password is required.');
+  }
 
-  // Create a new user document and save it to the database
-  const newUser = new User({
-    email: email,
-    password: hashedPassword
-  });
+  try {
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  newUser.save((err) => {
-    if (err) {
-      res.status(500).send('Error registering new user. Please try again.');
-    } else {
-      res.send('User registered successfully!');
+    // Create a new user document and save it to the database
+    const newUser = new User({
+      email: email,
+      password: hashedPassword
+    });
+
+    await newUser.save(); // Save the user to the database
+    console.log('User registered:', newUser);
+    res.send('User registered successfully!'); // Success message
+  } catch (err) {
+    console.error('Error details:', err); // Log the error for debugging
+    if (err.code === 11000) { // Duplicate key error
+      return res.status(400).send('Email already registered.'); // Handle duplicate email
     }
-  });
+    res.status(500).send('Error registering new user. Please try again.'); // Generic error message
+  }
 });
 
 // Start the server
