@@ -19,14 +19,9 @@
     </header>
     
     <main>
-        <div class="flex-container">
-        <div class="word-container">
         <h2 id="welcomeMessage"></h2>
         <div id="userInfo"></div> <!-- For displaying user information -->
         <ul id="connectionsList"></ul>
-        </div>
-        <img src="https://cdn-icons-png.flaticon.com/512/5095/5095023.png" alt="User Icon" class="user-icon";></img>
-        </div>
     </main> 
 
     <footer>
@@ -51,7 +46,6 @@
                 // Display user information
                 const userInfoDiv = document.getElementById('userInfo');
                 userInfoDiv.innerHTML = `
-                <div class="user-info-container">
                     <div class="user-info-card">
                     <h3>User Information</h3>
                     <p><strong>Name:</strong> <span class="user-info">${user.name}</span></p>
@@ -63,12 +57,9 @@
                         <li>${user.emergencyContacts[1]}</li>
                     </ul>
                     </div>
-                    </div>
                     
                 `;
-                
             }
-            
 
             // Display a welcome message
             document.getElementById('welcomeMessage').innerHTML = `<span class="welcome-text">Hello, ${loggedInUser}!</span> <p class="connections-header">Here are your connections:</p>`;
@@ -86,30 +77,6 @@
             });
         }
     </script>
-
-    <style>
-    .flex-container {
-        display: flex;
-        justify-content: center;
-        align-items: center; /* Align items to the start */
-        background-color: #d5f5f9;
-        border-radius: 15px;
-    }
-
-    .word-container {
-        max-width: 70%; /* Adjust width as necessary */
-        padding-right: 200px;
-    }
-
-    .user-icon {
-        width: 400px; /* Set a larger size for the image */
-        height: auto; /* Keep aspect ratio */
-        margin-left: 20px; /* Space between text and image */
-        padding-left: 80px;
-        padding-top: 50px;
-    }
-
-    </style>
 
     
 </body>
