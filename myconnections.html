@@ -3,27 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Deeper Connections</title>
+    <title>My Connections - Deeper Connections</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-            <header>
-                <h1>Welcome to Deeper Connections</h1>
-                <nav>
-                    <a href="home.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="evi.html">Evi</a>
-                    <a href="myconnections.html">My Connections</a>
-                </nav>
-            </header>
+    <header>
+        <h1>Welcome to Deeper Connections</h1>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="evi.html">Evi</a>
+            <a href="myconnections.html">My Connections</a>
+            <a href="login/login.html">Login</a>
+        </nav>
+    </header>
+    
     <main>
-        
+        <h2 id="welcomeMessage"></h2>
+        <div id="userInfo"></div> <!-- For displaying user information -->
+        <h2>Your Connections:</h2>
+        <ul id="connectionsList"></ul>
     </main> 
-
 
     <footer>
         <p>&copy; 2024 Deep Connections</p>
     </footer>
-    <script src="script.js"></script>
+    
+    <script src="scriptConnect.js"></script>
+    <script>
+        // Check if the user is logged in
+        const loggedInUser = localStorage.getItem('loggedInUser');
+
+        if (!loggedInUser) {
+            // If not logged in, redirect to login page
+            window.location.href = 'login/login.html';
+        } else {
+            // Retrieve users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            // Find the logged-in user
+            const user = users.find(user => user.username === loggedInUser);
+            
+            if (user) {
+                // Display user information
+                const userInfoDiv = document.getElementById('userInfo');
+                userInfoDiv.innerHTML = `
+                    <p><strong>Name:</strong> ${user.name}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Phone Number:</strong> ${user.phone}</p>
+                    <h3>Emergency Contacts:</h3>
+                    <ul>
+                        <li>${user.emergencyContacts[0]}</li>
+                        <li>${user.emergencyContacts[1]}</li>
+                    </ul>
+                `;
+            }
+
+            // Display a welcome message
+            document.getElementById('welcomeMessage').textContent = `Hello, ${loggedInUser}! Here are your connections:`;
+            
+            // Example: Retrieve user connections from localStorage
+            const connections = JSON.parse(localStorage.getItem('connections')) || [];
+            const connectionsList = document.getElementById('connectionsList');
+
+            connections.forEach(connection => {
+                const listItem = document.createElement('li');
+                listItem.textContent = connection; // Display connection names
+                connectionsList.appendChild(listItem);
+            });
+        }
+    </script>
 </body>
 </html>
