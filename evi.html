@@ -34,6 +34,30 @@
         <script src="script.js"></script>
 
         <script src="humeai.ts"></script>
+
+         <script>
+            document.getElementById('sendMessage').onclick = async function() {
+                const userInput = document.getElementById('userInput').value;
+                const outputDiv = document.getElementById('eviOutput');
+
+                // Call the function from humeai.js that interacts with Hume AI
+                try {
+                    const response = await callHumeAI(userInput); // Replace with actual function from humeai.js
+                    outputDiv.innerText = response; // Update the output div with the response
+                } catch (error) {
+                    console.error('Error calling Hume AI:', error);
+                    outputDiv.innerText = "Error: " + error.message; // Show error message
+                }
+            };
+
+            document.getElementById('openEvi').onclick = function() {
+                document.getElementById('eviModal').style.display = 'block';
+            };
+
+            document.getElementById('closeEvi').onclick = function() {
+                document.getElementById('eviModal').style.display = 'none';
+            };
+        </script>
     </main> 
 
 
