@@ -99,3 +99,15 @@ app.post('/login', async (req, res) => {
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
+
+// Logout button functionality
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('logoutButton').addEventListener('click', function () {
+        // Clear the logged-in user from localStorage
+        localStorage.removeItem('loggedInUser');
+
+        // Optionally, you can redirect to the login page
+        alert('You have been logged out.');
+        window.location.href = 'login/login.html'; // Redirect to the login page
+    });
+});
