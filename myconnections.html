@@ -62,9 +62,7 @@
             }
 
             // Display a welcome message
-            document.getElementById('welcomeMessage').innerHTML = `<span class="welcome-text">Hello, ${loggedInUser}!</span> <p class="connections-header">Here are your connections:</p>`;
-
-
+            document.getElementById('welcomeMessage').textContent = `Hello, ${loggedInUser}! Here are your connections:`;
             
             // Example: Retrieve user connections from localStorage
             const connections = JSON.parse(localStorage.getItem('connections')) || [];
