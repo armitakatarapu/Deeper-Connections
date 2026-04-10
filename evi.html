@@ -3,38 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Deeper Connections</title>
+    <title>EVI - Deeper Connections</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-            <header>
-                <h1>Welcome to Deeper Connections</h1>
-                <nav>
-                    <a href="home.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="evi.html">Evi</a>
-                    <a href="myconnections.html">My Connections</a>
-                    <a href="login/login.html">Login</a>
-                </nav>
-            </header>
+    <header>
+        <h1>Welcome to Deeper Connections</h1>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="evi.html">Evi</a>
+            <a href="myconnections.html">My Connections</a>
+            <a href="login/login.html">Login</a>
+        </nav>
+    </header>
+
     <main>
         <h1>Meet EVI!</h1>
-        <a href="https://humetherapy.vercel.app/">
-            <img src="images/hume.png" width="100%" alt="Hume Logo">
-        </a>
-    
-    
-        <script src="script.js"></script>
 
-        <script src="humeai.ts"></script>
+        <div class="evi-container">
+            <div class="controls">
+                <button id="start-btn">🎙️ Start Call</button>
+                <button id="stop-btn" disabled>⏹️ Stop Call</button>
+            </div>
 
-         
-    </main> 
-
+            <div id="chat"></div>
+        </div>
+    </main>
 
     <footer>
         <p>&copy; 2024 Deep Connections</p>
     </footer>
-    <script src="script.js"></script>
+
+    <!-- Vite handles TypeScript properly with type="module" -->
+    <script type="module" src="./humeai.ts"></script>
 </body>
 </html>
