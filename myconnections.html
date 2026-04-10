@@ -20,93 +20,106 @@
     
     <main>
         <div class="flex-container">
-        <div class="text-container">
-        <h2 id="welcomeMessage" style="color: rgb(54, 26, 13); font-size: 35px; font-weight: bold;"></h2>
-        <p id="connectionsMessage" style="color: rgb(130, 80, 72); font-size: 28px; font-weight: bold;">Here are your connections:</p>
-        <div id="userInfo"></div> 
-        <ul id="connectionsList"></ul>
+            <div class="text-container">
+                <h2 id="welcomeMessage" style="color: rgb(54, 26, 13); font-size: 35px; font-weight: bold;"></h2>
+                <p id="connectionsMessage" style="color: rgb(130, 80, 72); font-size: 28px; font-weight: bold;">Here are your connections:</p>
+                <div id="userInfo"></div>
+                <ul id="connectionsList"></ul>
+                <button id="logoutButton">Logout</button>
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/5095/5095023.png" alt="User Icon" class="user-icon">
         </div>
-        <img src="https://cdn-icons-png.flaticon.com/512/5095/5095023.png" alt="User Icon" class="user-icon">
-        </div>
-    </main> 
+    </main>
 
     <footer>
         <p>&copy; 2024 Deep Connections</p>
     </footer>
-    
-    <script src="scriptConnect.js"></script>
-    <script>
-        // Check if the user is logged in
-        const loggedInUser = localStorage.getItem('loggedInUser');
 
-        if (!loggedInUser) {
-            // If not logged in, redirect to login page
-            window.location.href = 'login/login.html';
+    <script>
+        const API = 'http://localhost:3000/api';
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        // Auth guard
+        if (!token || !user) {
+            window.location.href = '/login/login.html';
         } else {
-            // Retrieve users from localStorage
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            // Find the logged-in user
-            const user = users.find(user => user.username === loggedInUser);
-            
-            if (user) {
-                // Display user information
+            // Show welcome message
+            document.getElementById('welcomeMessage').textContent = `Hello, ${user.name}!`;
+
+            // Fetch full profile from backend
+            fetch(`${API}/me`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(profile => {
                 const userInfoDiv = document.getElementById('userInfo');
                 userInfoDiv.innerHTML = `
                     <div class="user-info-card">
-                    <h3>User Information</h3>
-                    <p><strong>Name:</strong> <span class="user-info">${user.name}</span></p>
-                    <p><strong>Phone Number:</strong> <span class="user-info">${user.phone}</span></p>
-                    <h3>Emergency Contacts:</h3>
-                    <ul class="emergency-contacts">
-                        <li>${user.emergencyContacts[0]}</li>
-                        <li>${user.emergencyContacts[1]}</li>
-                    </ul>
+                        <h3>User Information</h3>
+                        <p><strong>Name:</strong> <span class="user-info">${profile.name}</span></p>
+                        <p><strong>Phone Number:</strong> <span class="user-info">${profile.phone}</span></p>
+                        <h3>Emergency Contacts:</h3>
+                        <ul class="emergency-contacts">
+                            <li>${profile.emergencyContacts?.[0] || 'None'}</li>
+                            <li>${profile.emergencyContacts?.[1] || 'None'}</li>
+                        </ul>
                     </div>
-                    
                 `;
-            }
+            })
+            .catch(err => {
+                console.error('Failed to load profile:', err);
+            });
 
-            // Display a welcome message
-            document.getElementById('welcomeMessage').textContent = `Hello, ${loggedInUser}!`;
-            document.getElementById('connectionsMessage').textContent = 'Here are your connections:';
-            
-            // Example: Retrieve user connections from localStorage
-            const connections = JSON.parse(localStorage.getItem('connections')) || [];
-            const connectionsList = document.getElementById('connectionsList');
+            // Fetch connections from backend
+            fetch(`${API}/connections`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(connections => {
+                const connectionsList = document.getElementById('connectionsList');
+                    connections.forEach(connection => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${connection.name} (@${connection.username})`;
+                        connectionsList.appendChild(listItem);
+                    });
+                }
+            )
+            .catch(err => {
+                console.error('Failed to load connections:', err);
+            });
 
-            connections.forEach(connection => {
-                const listItem = document.createElement('li');
-                listItem.textContent = connection; // Display connection names
-                connectionsList.appendChild(listItem);
+            // Logout
+            document.getElementById('logoutButton').addEventListener('click', function() {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                alert('You have been logged out.');
+                window.location.href = '/login/login.html';
             });
         }
     </script>
+
     <style>
-        
         .flex-container {
             display: flex;
             justify-content: center;
-            align-items: center; /* Align items to the start */
-            background-color: #dcf7fa; /* Background color */
-            border-radius: 15px; /* Adjust the radius for rounded corners */
-            padding: 20px; /* Optional: add padding for spacing */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+            align-items: center;
+            background-color: #dcf7fa;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-    
-        .text-container {
-            max-width: 70%; /* Adjust width as necessary */
-            font-size: larger;
 
+        .text-container {
+            max-width: 70%;
+            font-size: larger;
         }
-    
+
         .user-icon {
-            width: 450px; /* Set a larger size for the image */
-            height: auto; /* Keep aspect ratio */
-            margin-left: 100px; /* Space between text and image */
+            width: 450px;
+            height: auto;
+            margin-left: 100px;
         }
     </style>
-    
-
-    
 </body>
 </html>

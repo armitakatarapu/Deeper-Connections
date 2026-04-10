@@ -1,3 +1,5 @@
+const API = 'http://localhost:3000/api';
+
 // ===== HELPERS =====
 function getCurrentPage() {
     return window.location.pathname;
@@ -7,73 +9,84 @@ function isLoginPage() {
     return getCurrentPage().includes('login.html');
 }
 
+function getToken() {
+    return localStorage.getItem('token');
+}
+
 // ===== AUTH GUARD =====
-// Only redirect to login if NOT already on the login page
-if (!localStorage.getItem('loggedInUser') && !isLoginPage()) {
-    window.location.href = 'login/login.html';
+if (!getToken() && !isLoginPage()) {
+    window.location.href = '/login/login.html';
 }
 
 // ===== LOGIN & SIGNUP (only run on login page) =====
 if (isLoginPage()) {
 
-    document.getElementById('signupForm').addEventListener('submit', function(event) {
+    document.getElementById('signupForm').addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const username = document.getElementById('signupUsername').value;
-        const password = document.getElementById('signupPassword').value;
-        const emergencyContact1 = document.getElementById('emergencyContact1').value;
-        const emergencyContact2 = document.getElementById('emergencyContact2').value;
+        const body = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            username: document.getElementById('signupUsername').value,
+            password: document.getElementById('signupPassword').value,
+            emergencyContact1: document.getElementById('emergencyContact1').value,
+            emergencyContact2: document.getElementById('emergencyContact2').value,
+        };
 
-        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const res = await fetch(`${API}/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
 
-        const userExists = users.find(user => user.username === username);
-        if (userExists) {
-            alert('Username already exists.');
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.error);
             return;
         }
 
-        const newUser = {
-            name,
-            phone,
-            username,
-            password,
-            emergencyContacts: [emergencyContact1, emergencyContact2]
-        };
-
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
         alert('Signup successful!');
-        window.location.href = 'login.html';
+        window.location.href = '/myconnections.html';
     });
 
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('loginPassword').value;
+        const body = {
+            username: document.getElementById('username').value,
+            password: document.getElementById('loginPassword').value,
+        };
 
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(user => user.username === username && user.password === password);
+        const res = await fetch(`${API}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
 
-        if (user) {
-            localStorage.setItem('loggedInUser', user.username);
-            alert('Login successful!');
-            window.location.href = '../myconnections.html';
-        } else {
-            alert('Invalid username or password.');
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.error);
+            return;
         }
+
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        alert('Login successful!');
+        window.location.href = '/myconnections.html';
     });
 }
 
-// ===== LOGOUT (only run if button exists on the page) =====
+// ===== LOGOUT =====
 const logoutButton = document.getElementById('logoutButton');
 if (logoutButton) {
     logoutButton.addEventListener('click', function() {
-        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         alert('You have been logged out.');
-        window.location.href = 'login/login.html';
+        window.location.href = '/login/login.html';
     });
 }
